@@ -1,0 +1,146 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Függvények és gyakorlás:</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    </head>
+    <body style="background: url(hatter_eper.jpg); background-repeat: no-repeat;background-position: center; background-size: cover;">
+
+      
+
+        <h1 style="text-decoration-line: underline;color: #CB1A1A;">Függvények:</h1>
+
+        <div style="background-color: #99004C;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;color: aliceblue;font-size: 50px;">Szeretem a házi eperlekvárt.</div>
+
+        <div class="container my-4">
+            <p>A friss <a href="https://hu.wikipedia.org/wiki/Eper_(növényfaj)">eper</a> arról ismerszik meg, hogy édes mint a méz és haragosan piros és roppanós.</p>
+            <P>Te is szereted az <img src="eper.jpg" alt="eper" title="eper" width="300px," height="300px">epret?</P>
+        </div>
+
+        <div id="eredmenyekTabla" style="color: aquamarine; background-color: #99004C;" ></div>
+
+        <div id="osszesEredmeny" style="color: aliceblue; background-color: green;"></div>
+
+        <div id="randomPrimEredmeny" style="color: antiquewhite; background-color: black;"></div>
+
+
+        <script>
+            function checkPalindrome(){
+
+                const div = document.getElementsByTagName('div')[0];
+                const szoveg =(div.textContent || '').replace(/\s/g,'').toLowerCase();
+
+                const forditott =szoveg.split('').reverse().join('');
+
+               if(szoveg===forditott){
+                    return "Palindrom szöveg";
+               }else{
+                    return "Nem palindrom";
+               }
+            
+
+            }
+            console.log(checkPalindrome());
+
+            function aciBetukszamaDiv(){
+                const div = document.getElementsByTagName('div')[1];
+                const mondat = div.textContent || '';
+
+                const darabszamuk =(mondat.match(/[aci]/gi) || [] );
+                console.log(`'aA','cC','iI' betük száma:${darabszamuk}`);//aA,Cc,Ii betűket keres
+
+                const osszesAabetu= (mondat.match(/a/gi)  || [] ).length;//aA betűket keres
+                console.log(`'aA'betük száma:${osszesAabetu}`);
+
+                const osszesCcbetu = (mondat.match(/c/gi)   || []).length;//cC betűket keres
+                console.log(`Az oszes 'cC' betu:${osszesCcbetu}`);
+
+                const osszesiIbetu = (mondat.match(/i/gi) || []).length // iI betűket keres
+                console.log(`Az osszes 'iI'betu:${osszesiIbetu}`);
+
+
+                const eredmenyekTabla = document.getElementById("eredmenyekTabla");// a divbe kiiratjuk az eredmenyeket
+                eredmenyekTabla.innerHTML =`
+                    <p>'aA' betuk szama:${osszesAabetu}db</p>
+                    <p>'cC' betuk szama:${osszesCcbetu}db</p>
+                    <p>'iI' betuk szama:${osszesiIbetu}db</p>
+                
+                `;
+
+                return{a:osszesAabetu, c:osszesCcbetu ,i:osszesiIbetu};// itt így írjuk ki a returnbe ha több eredmény tér vissza, mert első után kilép a függvényből
+              
+            }
+            console.log(aciBetukszamaDiv());
+
+            function osszesKiiratasa(){
+
+                const osszesEredmeny = document.getElementById("osszesEredmeny");
+
+                const ujParagrafus = document.createElement("p");//1.szöveg létrehozása
+                ujParagrafus.innerText = checkPalindrome(); //1. Palindrom ellenőrzés eredménye függvény meghívása
+
+                const ujParagrafus2 = document.createElement("P");//2.szöveg létrehozása
+                const betuEredmenyek =aciBetukszamaDiv();// 2.aciBetukszamaDiv függvény meghívása és eredménye
+                ujParagrafus2.innerText= `aA: ${betuEredmenyek.a}, cC: ${betuEredmenyek.c}, iI: ${betuEredmenyek.i}`;// uj szöveg2 létrehozása a betuEredmenyekkel osszekapcsolva
+
+                osszesEredmeny.appendChild(ujParagrafus);//1.szöveg kiiratása
+                osszesEredmeny.appendChild(ujParagrafus2);//2.szöveg kiirataása
+
+            }
+            osszesKiiratasa();
+
+
+            function primszamGenerator(){// függvény amely generál egy véletlenszerű prímszámot 2 és 100 között:
+                function isPrime(n){
+                    if(n<2)return false;
+                    for (let i =2; i<= Math.sqrt(n); i++){
+                        if(n % i ===0)return false;
+                    }
+                    return true;
+                }
+
+                let randomPrim;
+                do{
+                    randomPrim= Math.floor(Math.random()*100)+2;// Véletlen szám 2 és 100 között
+                }while (!isPrime(randomPrim)); // Addig ismétli, amíg prímet nem talál
+
+             
+
+                let randomPrimEredmeny = document.getElementById("randomPrimEredmeny");
+                randomPrimEredmeny.innerHTML=`
+                    <tr>Véletlenszerú prímszám: ${randomPrim}</tr>
+
+                `;
+                return {randomPrim};
+
+                
+                console.log(`Véletlenszerú prímszám: ${randomPrim}`);
+          
+            }
+
+            let randomPrim = primszamGenerator();
+            console.log(randomPrim);
+          
+         
+
+            
+
+           
+        
+        
+
+           
+
+
+
+
+
+
+
+
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+ 
+    </body>
+</html>

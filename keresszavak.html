@@ -1,0 +1,165 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width =device-width, initial-scale =1.0">
+        <title>Szavak szűrése</title>
+    </head>
+    <body>
+        <h1>Szavak szűrése:</h1>
+
+        <script>
+
+            //1.Leghosszabb szavak kiszűrése:
+
+           /* let szavak =["alma","körte","vadmeggy"];
+
+            let leghosszabb=leghosszabbSzo(szavak);
+
+          
+
+            function leghosszabbSzo(tomb){
+                
+                if(tomb.lenght===0){
+                    return "A tömb üres";            
+
+                }
+
+                let leghosszabb= tomb[0];
+
+    
+                for(let i =1; i<tomb.length; i++){
+                    if(tomb[i].length > leghosszabb.length){
+                        leghosszabb =tomb[i];
+                    }
+
+                }
+                return leghosszabb;
+
+            }
+            console.log("A leghosszabb szó:",leghosszabb);
+
+
+
+            //2.Legrovidebb szavak kiszűrése:
+
+            let legrovidebb =legrovidebbSzo(szavak);
+
+
+            function legrovidebbSzo(tomb){
+
+                if(szavak.length===0){
+                    return "Üres tömb";
+                }
+
+
+                let legrovidebb = tomb[0];
+
+                for(let i =1; i<tomb.length; i++){
+                    if(tomb[i].length < legrovidebb.length){
+                        legrovidebb = tomb[i];
+                    }
+                }
+                return legrovidebb;
+            }
+            console.log("A legrövidebb szó:",legrovidebb);*/
+
+
+
+
+
+            //Vagy leghosszabb szó kiszűrése rövidebben:
+
+            const szavak =["baba","bevásárlókocsi","sampon","ló"];//itt határozzuk meg a tömb nevét és tartalmát
+            const leghosszabb = leghosszabbSzo(szavak);
+
+            function leghosszabbSzo(tomb){
+                if(tomb.length === 0){
+                    return "Üres tomb.";
+                }
+
+                return tomb.reduce((leghosszabb,jelenlegi) => jelenlegi.length > leghosszabb.length ? jelenlegi:leghosszabb);
+
+            }
+
+            console.log("A leghosszabb szó:",leghosszabb);
+
+
+            //Vagy legrövidebb szó kiszűrése egyszerűen:
+
+
+            const legrovidebb = legrovidebbSzo(szavak)
+
+            function legrovidebbSzo(szavak){  // mindegy,hogy szavak vagy tömb a megfogalmazás hisz a tömbe lévő szavakat keresi
+                if(szavak.length ===0){
+                    return "A szavak tömb üres";
+
+                }
+
+                return szavak.reduce((legrovidebb,jelenlegi)=>jelenlegi.length < legrovidebb.length ? jelenlegi:legrovidebb);
+
+            }
+            console.log("A legrövidebb szó",legrovidebb);
+
+
+            // Négy karakterhosszú szó kiválogatatása a tőmbböl:
+
+            function negykarakterhoszuSzo(szavak){
+                const negykarakter = szavak.filter((szo)=>szo.length === 4);
+
+                return negykarakter;
+
+
+                
+
+            }
+            console.log(negykarakterhoszuSzo(szavak));
+
+            //hosszabb mint ketto karakter
+
+
+            function hosszabbmintKetkarakter(szavak){
+                const hosszabbkettonel = szavak.filter((szo)=>szo.length > 2);
+
+                return hosszabbkettonel;
+
+            }
+            console.log(hosszabbmintKetkarakter(szavak));
+
+            // rovidebb mint három karakter
+
+            function rovidebbmintHaromkarakter(szavak){
+                const rovidebbharomnal = szavak.filter((szo)=>szo.length < 3);
+
+                return rovidebbharomnal;
+
+            }
+            console.log (rovidebbmintHaromkarakter(szavak));
+            
+
+         
+            
+
+           
+          
+
+    
+               
+            
+          
+
+
+            
+
+            
+            
+
+
+
+
+            
+
+        
+        </script>
+        
+    </body>
+</html>

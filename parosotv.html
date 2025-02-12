@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiválogat páros és ötvennél nagyobb számot</title>
+</head>
+<body>
+
+    <div>ahhhhhhkkbhggajjkhjha</div>
+    <div>"Indul a görög aludni"</div>
+
+    <script>
+
+        //Kiválogatja a páros számokat amik nagyobbak mint ötven:
+
+        
+		function kivalogatParosOtven(){
+			const szamok =[10, 20, 3, 5, 100, 50, 60, 53];
+            console.log(szamok);
+			return szamok.filter(szam => szam >50 && szam % 2 ===0);
+
+
+		}
+
+		console.log(kivalogatParosOtven());
+
+        // a betük száma kiválogatása az első divből:
+
+        function aBetukSzamaDiv(){
+            const div = document.getElementsByTagName('div')[0];
+            const szoveg = div.textContent  || '';
+
+            const darabszam =(szoveg.match(/a/gi) ||[]).length;
+            console.log (`Az 'a' betük száma:${darabszam}`);
+
+            return darabszam;
+        }
+
+        console.log(aBetukSzamaDiv());
+
+        //A mondat palindrom ellenőrzése:
+
+
+        function isPalindrome(){
+            const div = document.getElementsByTagName('div')[1];
+            const mondat =(div.textContent || '').replace(/\s/g,'').toLowerCase();
+            
+
+            const forditott = mondat.split('').reverse().join('');
+
+            if(mondat===forditott){
+            
+                return "Palindrom";
+
+            }else{
+                return "Nem palindrom";
+            }
+              
+
+        }
+        console.log(isPalindrome());
+
+
+    </script>
+    
+</body>
+</html>
