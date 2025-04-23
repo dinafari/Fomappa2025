@@ -1,0 +1,207 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tests</title>
+    </head>
+    <body>
+        <h1>JavaScript Tests and Results:</h1>
+
+        <script>
+
+            const szamok =[33,22,66,79,47,2,100];
+
+            function legn(){
+                return Math.max(...szamok);
+            }
+            console.log("A legnagyobb szám",legn());
+
+
+            function legk(){
+                return Math.min(...szamok);
+
+            }
+            console.log("A legkisebb szám",legk());
+
+            function nov(){
+             
+                return szamok.sort((a,b)=>(a-b));
+            }
+            console.log("Számok növekvőbe",nov());
+
+            function parossz(){
+                const paros = szamok.filter((szam) => szam %2 ===0);
+                return paros;
+            }
+            console.log("Páros számok",parossz());
+            
+
+            function paratl(){
+                const paratl = szamok.filter((szam)=>szam %2 !==0);
+                return paratl;
+            }
+            console.log("Páratlan számok",paratl());
+
+
+            const szavak =[ "indul","görög","aludni","hó","napsütéses"];
+
+            function PalindomE(szo){
+                const palindr = szo===szo.split("").reverse().join("");
+                return palindr;
+
+            }
+        
+            const palindromok =szavak.filter(PalindomE);
+            console.log("Palindrome szavak",palindromok);
+
+
+            function legh(){
+                return szavak.reduce((leghosszabb,jelenlegi) => jelenlegi.length > leghosszabb.length ? jelenlegi:leghosszabb );
+
+            }
+            console.log("A leghosszabb szó:",legh());
+
+            function kezdobetukszures(arr,query){
+                return arr.filter((el) =>el.toLowerCase().startsWith(query.toLowerCase()));
+
+            }
+            console.log("I i -vel kezdődő szavak szűrése",kezdobetukszures(szavak,"i"));
+
+
+            function tartalmaz(arr,query){
+                return szavak.filter((el) =>el.toLowerCase().includes(query.toLowerCase()));
+
+            }
+            console.log("I i betűt tartalmazó szavak szűrése",tartalmaz(szavak,"i"));
+
+            const Tomb =[
+                {neve:"cseresznye",ara:2500, keszletenE:true,kaphato:"Aldi"},
+                {neve:"banán",ara:1500, keszletenE:true,kaphato:"Auchan"},
+                {neve:"mango",ara:3500, keszletenE:false,kaphato:"Aldi"},
+                {neve:"citrom",ara:500, keszletenE:true,kaphato:"Tesco"},
+                {neve:"tojás", ara:100, keszletenE:false,kaphato:"Interspar"},
+                
+        
+            ];
+            console.log("Árucikkeink:",Tomb);
+
+
+            //Legdrágább termék kikeresése.
+            //Termékek összértékének kiírása
+            //Termékek átlagának kiszámítása
+
+            function legdragabbTermAtlag(){
+                const legdr = Tomb.reduce((max,termek) =>termek.ara > max.ara ? termek:max );
+
+                console.log("A legdragaabb termek neve:"+ legdr.neve, "Legdragabb termek ara:"+legdr.ara);
+
+                const osszertekuk= Tomb.reduce((acc,termek) =>acc + termek.ara,0 );
+                console.log("Összértekuk",osszertekuk);
+
+                const atlaguk = osszertekuk/Tomb.length;
+                return atlaguk.toFixed();
+            }
+            console.log("Az átlaguk ára",legdragabbTermAtlag());
+
+            //Készleten lévő áruk:
+
+
+            function keszleten(){
+                return Tomb.filter((aru) =>aru.keszletenE==true);
+
+            }
+            console.log("Áruk amik készleten vannak:",keszleten());
+
+
+            //ÁRUK AMIKNEK AZ ÁRA 3500 ALATT VAN és készleten van
+
+
+            function HaromezOtszalatt(){
+                const alatta = Tomb.filter((aru) => aru.keszletenE==true && aru.ara < 3500);
+                return alatta;
+            
+            }
+            console.log("ÁRUK AMIKNEK AZ ÁRA 3500 ALATT VAN és készleten van:",HaromezOtszalatt());
+
+            //A legolcsóbb készleten lévő áru. 
+
+
+            function legolcsAruKeszleten(){
+               const  keszleten= Tomb.filter((aru)=>aru.keszletenE==true);
+               const legolcs= Math.min(...keszleten.map(aru =>aru.ara));
+               return keszleten.filter((aru)=>aru.ara ==legolcs);
+              
+            }
+            console.log("A legolcsóbb készleten lévő áru",legolcsAruKeszleten());
+
+
+            //Prímszám generátor ami 2 és 5000 között generál 10 számot:
+
+            // Prímszám vizsgáló függvény:
+
+            function PrimSzamE(n){
+                if(n<=1)return false; //Mert 2-től indulunk
+                for(let i = 2 ;i <=Math.sqrt(n);i++){ // Négyzetgyök függvény a kezdőértéknek és a számnak(n)
+                    if(n % i ===0 ) return false; // Ha a szám páros vagy egyenlő nullával akkor nem jó tehát hamis értékkel tér vissza!
+                }
+                return true;//Viszont ha jó  akkor igazzal tér vissza!
+                
+            }
+
+            //Prímeket generál és meghívja a Primszám vizsgáló függvényt
+
+            function generalRandomPrimeket(count, min =2 ,max =5000){
+                const primek= [];
+                while(primek.length < count){ //primek tömb szamai(length)(2-5000 között maradjon)
+                    const randomszam = Math.floor(Math.random()*(max-min)) + min;
+                    if(PrimSzamE(randomszam) && !primek.includes(randomszam)){
+                        primek.push(randomszam);
+                    }
+
+                }
+                return primek;
+
+            }
+            console.log("Generált prímszámok",generalRandomPrimeket(10));
+
+            //Áru ami kapható az Aldiban és készleten van:
+
+            function aldiKeszlet(){
+                const aldis= Tomb.filter(aru=>aru.keszletenE & aru.kaphato=="Aldi");
+                return aldis;
+            }
+            console.log("Áru ami kapható az Aldiban és készleten van:",aldiKeszlet());
+
+
+
+            function aruaraNov(){
+                const novekvo= Tomb.sort((a,b)=>a.ara-b.ara);
+                return novekvo;
+            }
+            console.log(aruaraNov());
+
+            
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        </script>
+        
+    </body>
+</html>

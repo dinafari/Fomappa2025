@@ -7,7 +7,15 @@
 
     </head>
     <body style="background: url(szamok.jpg);background-repeat: no-repeat; background-position: center; background-size: cover;">
+        <div style="text-align: center; font-style: italic; color: whitesmoke">ifgfhgihghghghffddI</div>
+        <br>
+        <div style="color: whitesmoke; text-align: center;">Indul a Görög aludni</div>
+        <br>
+        <div style="text-align: center; color: whitesmoke;">Nem megy aludni</div>
+
+
         <div class="container my-4">
+           
 
             <h1 style="color:whitesmoke ;">Optimalizált Prímszám Generátor</h1>
             <p style="color: whitesmoke;"><a href="https://hu.wikipedia.org/wiki/Prímszámok">Prímszámnak</a> nevezzük az olyan természetes számot, ami pontosan két különböző pozitív osztóval rendelkezik: 1 és önmaga.</p> 
@@ -34,7 +42,7 @@
             <div class="row justify-content-center">
                 <div class="col-auto">
                     <button type="button" class="btn btn-primary"  id="general" onclick="general()">generál</button>
-                <button type="button" class="btn btn-danger" id="torol" onclick="torol()">töröl</button>
+                    <button type="button" class="btn btn-danger" id="torol" onclick="torol()">töröl</button>
 
                 </div>
 
@@ -72,7 +80,7 @@
                 console.log(result);
 
 
-                let eredmenyek = document.getElementById("eredmenyekTabla")
+                let eredmenyek = document.getElementById("eredmenyekTabla");
                 eredmenyek.innerHTML =`
                     <tr>
                         <td>${result[0]}</td>   
@@ -100,6 +108,82 @@
                 
 
             }
+
+            function iBetukszamaDiv(){
+                const div = document.getElementsByTagName('div')[0];
+                const szoveg = div.textContent || '';
+
+                const dbszam = (szoveg.match(/i/gi) || []).length;
+                return dbszam;
+
+            }
+            console.log("Az i illetve I betűk szama:",iBetukszamaDiv());
+
+            function Palindrome(){
+                const div = document.getElementsByTagName('div')[1];
+                const mondat = (div.textContent || '').replace(/\s/g,'').toLowerCase();
+
+                const forditott = mondat.split('').reverse().join('');
+
+                if(mondat === forditott){
+                    return "A mondat Palindrome" ;// true ha igaz visszatérést akarsz
+
+                } else{
+                    return "A mondat nem Palindrome" ;// false ha hamis visszatérést akarsz
+                }
+                    
+               
+            }
+            const ellenorzott =Palindrome();
+            console.log(ellenorzott);
+
+
+            const szavak= ["fésű","baba","ló",]
+
+            function szavkHnaHarom(){
+                return szavak.filter((szo) => szo.length > 3);
+
+
+            }
+            console.log("Háromnál hosszabb szavak",szavkHnaHarom());
+
+
+            const Ruhak=[
+                {neve:"pólo", merete:"M",ara:2000,keszletenE:true},
+                {neve:"nadrág", merete:"L",ara:5000,keszletenE:false},
+                {neve:"kabát",merete:"XL", ara:22000,keszletenE:false},
+                {neve:"sapka", merete:"s",ara:1500,keszletenE:true},
+
+            ];
+
+            //2.Raktáron lévő termékek kiíratása:
+
+            function raktaronvan(){
+                const raktaron =Ruhak.filter((ruha) => ruha.keszletenE === true);
+                return raktaron;
+            }
+            console.log("A raktáron lévő ruhák:",raktaronvan());
+
+            // 2.a)Nem  raktáron lévő termékek  nevének kiíratása:
+
+            function NincsRaktneve(){
+                const nincsraktaron =Ruhak.filter((ruha) => ruha.keszletenE === false);
+                return nincsraktaron.map(ruha =>ruha.neve).join(" , ");
+            }
+            console.log("Nincs raktáron:",NincsRaktneve());
+
+            //2.b)VAGY Így is lehet!:
+
+
+            /*function NincsRaktaron() {
+                const nincsraktaron = Ruhak.filter((ruha) => !ruha.keszletenE); // Egyszerűsítettem a feltételt
+                return nincsraktaron.map((ruha) => ruha.neve).join(", ");
+            }
+
+            console.log("Nincs raktáron:", NincsRaktaron());*/
+
+
+
             
         </script>
 

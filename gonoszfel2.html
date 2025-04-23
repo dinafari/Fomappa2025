@@ -1,0 +1,72 @@
+<html lang="hu">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width ,initial-scale=1.0">
+        <title>3.js.feladathoz hasonló feladat vizsga minta,</title>
+        <script type="text/javascript">
+
+           /*   function KivonasFeliras(osztaly, operandus1, operandus2){
+                    const elsoelem= document.getElementsByClassName(osztaly)[0];
+
+                    if(!elsoelem){
+                        console.error("Nem található ilyen osztályú elem",osztaly);
+                        return;
+                    }
+
+                    const p = document.createElement("p");
+                    p.appendChild(document.createTextNode( 
+                        `${operandus1}-${operandus2}= ${Number(operandus1) - Number(operandus2)}`
+                    ));
+
+                    elsoelem.appendChild(p);
+
+            
+
+                }
+            
+            
+            
+            
+                /window.onload = function(){
+                    kivonasFeliras("testResult","3","2");
+                    kivonasFeliras("testResult",10,5);
+                    kivonasFeliras("nemletezik",1,2);
+
+                };*/
+            // vagy ha összeadsz:
+            function osszeadasFeliras(osztaly, op1, op2){
+			    var elem = document.getElementsByClassName(osztaly)[0];
+
+			    var p = document.createElement("p");
+			    p.appendChild(document.createTextNode(op1 + " + " + op2 + " = " + (Number(op1) + Number(op2))));
+
+			    elem.appendChild(p);
+		    }
+
+
+            window.onload = function(){
+                osszeadasFeliras("testResult","3","2");
+                osszeadasFeliras("testResult",10,5);
+                osszeadasFeliras("nemletezik",1,2);
+
+            };
+
+
+
+
+
+
+
+
+
+        </script>
+    </head>
+    <body>
+        <h2>Tesztek</h2>
+        <div class="testResult"></div>
+	    <hr>
+
+	    
+        
+    </body>
+</html>

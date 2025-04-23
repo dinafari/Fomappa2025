@@ -1,0 +1,155 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Feladat3</title>
+
+    </head>
+    <body>
+        <h1>Feladat3</h1>
+        <script>
+
+            const szamok = [1,33,23,22,55,89,90,100,103,50];
+
+            const szavak =["piros","kék","piros","kertkapú","ló","napló"]
+
+            function nagyobbOtv(){
+
+                return szamok.filter((szam) =>szam >50);
+
+            }
+            console.log(nagyobbOtv());
+
+            function kisebbOtvparos(){
+                return szamok.filter((szam) => szam < 50 && szam % 2 ===0);
+            }
+
+            console.log(kisebbOtvparos());
+
+
+            function novekvParatl(){
+                paratl= szamok.filter((szam)=>szam %2 !==0);
+                return paratl.sort((a,b) => (a-b));
+            
+            }
+            console.log(novekvParatl());
+
+            function randomSZGeneraTor(count, min=2,max=1000){
+                let random= new Set();
+                while(random.size< count){
+                    random.add(Math.floor(Math.random()*(max-min +1)) + min);
+
+                }
+                return [...random];
+
+            }
+            console.log(randomSZGeneraTor(5));
+
+
+            function szoEgysz(){
+                return[...new Set(szavak)];
+            }
+            console.log(szoEgysz());
+
+
+
+            function Palindrom(szo){
+                const palind = szo===szo.split("").reverse().join("");
+                return palind;
+            }
+            const palindromok= szavak.filter(Palindrom);
+            console.log(palindromok);
+
+
+
+            function szoLo(arr, query){
+                return szavak.filter((el)=>el.toLowerCase().includes(query.toLowerCase ()) );
+
+            }
+            console.log(szoLo(szavak,"ló"));
+
+
+            const Termekek=[
+                {neve:"fehércsoki",ara:2200, keszletenE:true, gyarto:"Milka"},
+                {neve:"tejcsoki",ara:3500, keszletenE:false, gyarto:"Milka"},
+                {neve:"Étcsoki",ara:1200, keszletenE:true, gyarto:"Lindt"},
+                {neve:"Étcsoki",ara:1200, keszletenE:true, gyarto:"Lindt"}
+            ];
+            console.log("A termékek:",Termekek);
+
+            function keszletenVan(){
+                const vankeszl= Termekek.filter(termek =>termek.keszletenE);
+
+                if(vankeszl.length > 0){
+                    console.log("Van keszleten csoki");
+                    console.log("A keszleten lévő csokik:",vankeszl);
+
+                }
+                else{
+                    console.log("Nincs csoki a készleten");
+                }
+                return vankeszl;
+                
+            }
+            const veger= keszletenVan();
+            console.log("A készleten lévő csokik végeredménye",veger);
+
+            //Legrdágább csokik objektum kiszűrése
+            function legDragabb(){
+
+                const legdr = Math.max(...Termekek.map(termek => termek.ara));
+                return Termekek.filter(termek => termek.ara === legdr)[0] || null;
+
+            }
+            console.log("A legdrágább csoki a:",legDragabb());
+
+            //Legolcsóbb csokik objektum kiszűrése:
+
+            function legOlcsobb(){
+                const legol=  Math.min(...Termekek.map(termek => termek.ara));
+                return Termekek.filter(termek=>termek.ara === legol)[0] || null;
+
+            }
+            console.log("A legolcsóbb csoki:",legOlcsobb());
+
+
+            //Összes Milka
+
+            function Milkaosszes(){
+             
+                return Termekek.filter(termek => termek.gyarto ==="Milka");
+            }
+
+            console.log("Az összes Milka csoki kiszűrése:",Milkaosszes());
+
+            //Készleten lévő Milka csokik:
+
+            function MilkaKeszleten(){
+             
+             return Termekek.filter(termek => termek.gyarto ==="Milka" && termek.keszletenE ===true);
+            }
+
+            console.log("Csak a készleten lévő Milka csoki kiszűrése:",MilkaKeszleten());
+
+
+            //Objektumok ismétlődésének kiszűsése:
+
+            function LindtEgysz(){
+                const egyszer = Array.from(new Set(Termekek.map(termek =>JSON.stringify(termek)))).map(termek =>JSON.parse(termek));
+                return egyszer;
+
+            }
+            console.log("Minden termék csak egyszer,nincs ismétlődő termék:",LindtEgysz());// Nincs többé ismétlődő objektum!
+
+
+
+
+
+
+
+
+
+        </script>
+        
+    </body>
+</html>

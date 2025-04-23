@@ -70,7 +70,7 @@
             //Vagy leghosszabb szó kiszűrése rövidebben:
 
             const szavak =["baba","bevásárlókocsi","sampon","ló"];//itt határozzuk meg a tömb nevét és tartalmát
-            const leghosszabb = leghosszabbSzo(szavak);
+            
 
             function leghosszabbSzo(tomb){
                 if(tomb.length === 0){
@@ -81,13 +81,15 @@
 
             }
 
+            const leghosszabb = leghosszabbSzo(szavak);
+
             console.log("A leghosszabb szó:",leghosszabb);
 
 
             //Vagy legrövidebb szó kiszűrése egyszerűen:
 
 
-            const legrovidebb = legrovidebbSzo(szavak)
+            
 
             function legrovidebbSzo(szavak){  // mindegy,hogy szavak vagy tömb a megfogalmazás hisz a tömbe lévő szavakat keresi
                 if(szavak.length ===0){
@@ -98,6 +100,7 @@
                 return szavak.reduce((legrovidebb,jelenlegi)=>jelenlegi.length < legrovidebb.length ? jelenlegi:legrovidebb);
 
             }
+            const legrovidebb = legrovidebbSzo(szavak)
             console.log("A legrövidebb szó",legrovidebb);
 
 
@@ -125,7 +128,7 @@
             }
             console.log(hosszabbmintKetkarakter(szavak));
 
-            // rovidebb mint három karakter
+            // Rövidebb mint három karakter
 
             function rovidebbmintHaromkarakter(szavak){
                 const rovidebbharomnal = szavak.filter((szo)=>szo.length < 3);
@@ -134,6 +137,42 @@
 
             }
             console.log (rovidebbmintHaromkarakter(szavak));
+
+
+
+            //Két karakterhosszú szavak
+
+
+            function Ketkarakterhosszu(szavak){
+                const ketto = szavak.filter(szo=>szo.length === 2);// Ha több dolgot akarsz szűrni akkor:((szo=>)szo.length === 2)
+
+                return ketto;
+            }
+            console.log ("Kétkarakter hosszú szó",Ketkarakterhosszu(szavak));
+
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+                        
+            
+
             
 
          

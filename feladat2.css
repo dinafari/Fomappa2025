@@ -1,0 +1,23 @@
+h1{
+    color: gold;
+   text-align: center;
+   font-family: fantasy;
+   font-weight: bold;
+
+}
+body{
+    background-image: url(purplestone.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+}
+p{
+    color:#e40893;
+    font-weight: bold;
+    font-size: large;
+    text-align: center;
+    cursor: pointer;
+    
+    
+}

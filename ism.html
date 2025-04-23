@@ -1,0 +1,123 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width= device-width, initial-scale = 1.0">
+        <title>Ismétlés:</title>
+    </head>
+    <body>
+
+        <script>
+            let szamok =[3,10,20,30,44,55,60];// 7 számjegy hosszuk kisebb mint 10
+
+
+            //1.Több mint tíz db szám van a tömbbe igaz vagy hamis
+            function szamokdbhosszatobbTiz(szamok){
+             
+                if(szamok.length >10 ){
+                    return true;
+
+                
+                }else{
+                    return false;
+                }
+            }
+            console.log(szamokdbhosszatobbTiz(szamok));
+
+
+            //2.Nagyobb mint 10 számok miválogatása eredmény tömbbe
+            function kivNagyMTiz(szamok) {
+                let eredmeny = [];  // Változó deklarálása
+
+                for (let i = 0; i < szamok.length; i++) {
+                    if (szamok[i] > 10) {
+                        eredmeny.push(szamok[i]);  // Helyes push()
+                    }       
+                }
+
+                return eredmeny.length > 0 ? eredmeny : "Nincs ilyen szám"; // Csak akkor írja ki, ha nincs találat
+            }
+            // Függvény meghívása és kiírása
+            console.log("Számok amik nagyobbak mint tíz: " + kivNagyMTiz(szamok));
+
+
+
+            //3.Nagyobb mint 20 számok kiválogatása filterrel
+
+
+            function  nagyobbMintHusz(szamok){
+                const nagyobb = szamok.filter(szam=> szam > 20);
+                return nagyobb;
+
+            }
+           const megoldas = nagyobbMintHusz(szamok);
+           console.log ("Nagyobbak mint húsz",megoldas);
+
+
+
+           //4.feladat szamok indexe nagyobb mint 4!
+
+
+
+           //let szamok = [3, 10, 20, 30, 44, 55, 60]; // Tömb definiálása
+           //indexek:szamok[0] = 3
+            //3-nak[0] = i =0
+            //10-nek[2] = i=2 
+            //20-nak[3] = i=3  
+            //30.nak[4] = i=4 stb.....
+            
+
+            function indexekNagyobbMintNegy(szamok) {
+                let indexek = []; // Ide tároljuk az indexeket
+
+                for (let i = 0; i < szamok.length; i++) { 
+                    if (i > 4) { // Ha az index nagyobb, mint 4
+                        indexek.push(i); // Index hozzáadása a tömbhöz
+                    }
+                }
+
+                return indexek; // Visszatérünk az indexek tömbjével
+            }
+
+            console.log("Indexek, amelyek nagyobbak mint 4: ", indexekNagyobbMintNegy(szamok));
+
+
+           // Ugyan ez filterrel:
+           //let szamok = [3, 10, 20, 30, 44, 55, 60]; // Tömb
+
+            // Filterrel kiszedjük azoknak az elemeknek az indexét, ahol az index > 4
+            let indexek = szamok
+            .map((_, index) => index) // Létrehozunk egy index tömböt
+            .filter(index => index > 4); // Csak azokat az indexeket tartjuk meg, amik nagyobbak 4-nél
+
+            console.log("Indexek, amelyek nagyobbak mint 4:", indexek);
+
+            //Ha láncolsz metódusokat (map(), filter(), reduce(), stb.), akkor a pont (.) összekapcsolja őket.
+            /*Mit csinál ez a kód?
+            map((_, index) => index)
+
+            Létrehozunk egy új tömböt, amely csak az indexeket tartalmazza (0-tól szamok.length - 1-ig).
+            Az _ azt jelenti, hogy nem érdekel minket az elem értéke, csak az index!
+            Így kapunk egy [0, 1, 2, 3, 4, 5, 6] tömböt.
+            filter(index => index > 4)
+
+            Ebből megtartjuk azokat az indexeket, amelyek nagyobbak, mint 4.
+            Ez lesz a [5, 6] tömb.
+
+            A pont (.) az egymásba ágyazott (láncolt) függvényhívásokat köti össze.*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </script>
+        
+    </body>
+</html>

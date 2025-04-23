@@ -1,0 +1,152 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width =device-width,initial-scale=1.0">
+        <title>Vizsgaujra</title>
+
+    </head>
+    <body>
+        <h1>Vizsgafeladatok újra:</h1>
+
+        <div>Abrakadabra</div>
+        <div>A Santa Lived as a devil at NASA</div> <!--Ez a másokik div tagname szerint -->
+
+
+        <div class="eredmenyek"></div> <!-- Első div classnév(eredmények) osztály szerint [0]-->
+        <br>
+        <h3>Ez itt a második div[1] class osztállyal 'eredmenyek' class névvel:</h3>
+        <div class="eredmenyek"></div><!-- Második div classnév osztály(eredmények) szerint [1]-->
+       
+
+        <script>
+
+            //Kiválogat őtvennél nagyobb páros számokat
+
+            const szamok=[10,20,3,5,100,50,60,53]
+
+
+
+            function kivalogatParosOtven(){
+                const paros =szamok.filter((szam)=>szam % 2 == 0 );
+                return paros.filter((szam)=>szam > 50);
+
+            }
+            console.log("Kiválogat őtvennél nagyobb páros számokat",kivalogatParosOtven());
+
+            //A a betük számát visszaadja az első div node-ból:
+
+            function aBetukSzamaDiv(){
+                const div = document.getElementsByTagName('div')[0];
+               
+                const szoveg = div.innerText || '';
+
+                const dbszam = (szoveg.match(/a/gi) || []).length;
+
+                return dbszam +" db "; 
+            }
+            console.log("Az a betük száma az első divben:",aBetukSzamaDiv());
+
+            //Palindrome ellenőrző szöveg:
+
+            function PalindromE(){
+                const osszetettszoveg = szoveg.replace(/\s/g, '').toLowerCase();
+                const forditottszoveg = osszetettszoveg.split('').reverse().join('');
+                return osszetettszoveg == forditottszoveg;
+
+            }
+            const szoveg= "Indul a görög aludni";
+            console.log(PalindromE());
+
+
+            function palindDivszoveg(){
+
+                const divketto= document.getElementsByTagName('div')[1].textContent;
+                const szoveg= divketto.replace(/\s/g, '').toLowerCase();
+                const forditva= szoveg.split('').reverse().join('');
+                return szoveg ==forditva;
+
+            }
+            console.log(palindDivszoveg());
+
+            //Gonosz vizsgafeladat megoldása: :)
+
+            //Itt  a DOM (dokumentumba )írja ki és ki is consolozza  az eredményt!
+            function osszeadasFeliras(op1, op2) {
+                var elem = document.getElementsByClassName('eredmenyek')[0];//Azért nulladik=első indexű div, mert div class típusból eredmények névvel rendelklezőből ő az első
+
+                var p = document.createElement("p");
+                p.textContent = op1 + " + " + op2 + " = " + (Number(op1) + Number(op2));
+
+                elem.appendChild(p);
+                console.log(p.textContent);
+               
+            }
+
+           const vege = osszeadasFeliras(10, 5);
+
+
+
+           function muveletFeliras(ope1, ope2, muvjel) {
+                const elemketto = document.getElementsByClassName('eredmenyek')[1];//eredmények névvel tehát ő a második div class
+                
+                const p = document.createElement("p");
+                let eredmenyek;
+
+                switch (muvjel) {
+                    case '+':
+                    eredmenyek = Number(ope1) + Number(ope2);
+                break;
+                    case '-':
+                    eredmenyek = Number(ope1) - Number(ope2);
+                break;
+                    case '*':
+                    eredmenyek = Number(ope1) * Number(ope2);
+                break;
+                    case '/':
+                    eredmenyek = Number(ope2) !== 0 ? (Number(ope1) / Number(ope2)) : 'Hiba: Nullával osztás';
+                break;
+                default:
+                    eredmenyek = 'Ismeretlen műveleti jel';
+                }
+
+                p.textContent = `${ope1} ${muvjel} ${ope2} = ${eredmenyek}`;
+                elemketto.appendChild(p);
+                console.log(p.textContent);
+            }
+            muveletFeliras(10, 5, '+');
+            muveletFeliras(10, 5, '-');
+            muveletFeliras(10, 5, '*');
+            muveletFeliras(10, 5, '/');
+
+
+
+
+
+
+
+           
+            
+
+       
+
+
+            
+
+
+
+
+
+
+
+            
+
+
+
+
+
+
+        
+
+        </script>
+    </body>
+</html>

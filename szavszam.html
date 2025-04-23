@@ -1,0 +1,274 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>szavakszam,számok szűrése</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    </head>
+    <body style="background-image: url(tablaxy.jpg); background-repeat: no-repeat; background-position: center; background-size: cover;">
+        <div class="container my-4" style="background-color: blue;">
+            <h1 style="color: aliceblue; font-weight: 300px;">Gyakorlások,Div container:</h1>
+            <div class="row" style="background-color: antiquewhite;">
+                <h2 style="text-align: center;">Másodikdivsor</h2>
+                <div class="col-lg-6" style="background-color: brown;">
+                    <h3>oszlop</h3>
+                    <p><a href="https://www.lipsum.com/">Lorem </a>ipsum dolor sit amet consectetur adipisicing elit. 
+                        Natus accusamus laboriosam libero veritatis consequuntur quidem tempora minima eveniet voluptatum at architecto vitae mollitia 
+                        similique voluptatibus, ipsa ullam consequatur eius autem?
+                    </p>
+                    <p>Lorem ipsum  <span style="height: 20px; width: 10px; background-color: aliceblue; text-decoration:underline ;font-style: oblique;">dolor</span> sit amet consectetur adipisicing elit.
+                        Quasi sed repellat aliquid culpa consequatur cum, beatae iusto ipsam voluptatem laborum
+                        enim eaque perspiciatis veniam vero velit sint
+                        possimus ullam ducimus!
+                    </p>
+
+
+
+                </div>
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam nemo quia in amet sit ea enim. Facere commodi aut similique, in voluptatibus 
+                quidem doloremque error necessitatibus
+                minima hic? Maxime, autem.
+            </p>
+        </div>
+
+
+
+        <script>
+
+            termekek= [{nev:"auto", ara:50000, szine:"piros"},
+                {nev:"motor",ara:6000, szine:"fekete"},
+                {nev:"bicikli", ara:15000, szine:"sárga"}
+
+            ];
+
+            szavak=["alma","körte","ló","rotációskapa"];
+
+
+            szamok= [1,2,8,20,33,66,100,50,60,7,3,9];
+
+
+
+            function parosSzamok(){
+                const paros = szamok.filter(szam => szam % 2 ==0);
+                return paros;
+            }
+            console.log("A páros számok:" + parosSzamok());
+
+
+            function paratlanSzamok(){
+                const paratlan = szamok.filter(szam => szam %2 !==0);
+                return paratlan;
+            }
+            console.log("A páratlan számok:",paratlanSzamok());
+
+
+            function legnSzam(){
+                
+                const legn = Math.max(...szamok);
+                return legn;
+
+            }
+            console.log("A legnagyobb szám",legnSzam());
+
+
+            
+            function legKisSzam(){
+
+                const legk = Math.min(...szamok);
+                return legk;
+
+            }
+            console.log("A legkisebb szám:"+ legKisSzam());
+
+
+            function leghosszabbSzo(){
+                const legh = szavak.reduce((leghosszabb,jelenlegi) => jelenlegi.length > leghosszabb.length ? jelenlegi:leghosszabb);
+                return legh;
+            }
+            console.log("leghoszabb szó:" + leghosszabbSzo());
+
+
+            function legrovodebbSzo(){
+                const legr = szavak.reduce((legrovidebb,jelenlegi) => jelenlegi.length < legrovidebb.length ? jelenlegi :legrovidebb );
+                return legr;
+            }
+            console.log (legrovodebbSzo());
+
+
+
+
+            //Legdrágább termék kikeresése.
+            //Termékek összértékének kiírása
+            //Termékek átlagának kiszámítása
+
+
+            function legragabbaktermekAtlag(){
+                const legdragabbak = termekek.reduce((max,termek) =>termek.ara > max.ara ? termek: max);
+                console.log ("A legdrágább neve és ára.Neve:"+ legdragabbak.nev, "Ára", legdragabbak.ara);
+
+                const osszertekuk = termekek.reduce((acc,termek) =>acc + termek.ara,0) ;
+                console.log("Összértékük",osszertekuk); 
+
+                const atlaguk = osszertekuk/termekek.length;
+
+                return atlaguk.toFixed();
+
+            }
+            console.log( "Az átlaguk ára:"+ legragabbaktermekAtlag() + "Ft");
+
+
+
+            function sargatermek(){
+                const sargaszinu = termekek.find(({szine})=> szine=="sárga");
+                return sargaszinu;
+            }
+            console.log("A termék aminek sárga a színe:",sargatermek());
+
+
+
+
+            //true vagy false a válasz
+            function vanlo(){
+                const lovan = szavak.includes("ló");
+                return lovan;
+            }
+            console.log("A válasz tehát, hogy a szöveg tartalmazza, hogy ló :",vanlo()); 
+
+
+
+
+
+
+            // A lo mint szó megkeresése find fügvénnyel:
+
+
+            function lomintszo(){
+                const lomintszo = szavak.find(szo=>szo=="ló");
+                return lomintszo;
+
+            }
+            console.log("A szövegbe tehát ott van mint külön álló szó a",lomintszo());
+
+
+
+
+            //Prímszámok generálása 2-3000 között:
+            function isPrime(n) {
+                if (n <= 1) return false;
+                for (let i = 2; i <= Math.sqrt(n); i++) {
+                    if (n % i === 0) return false;
+                }   
+                return true;
+            }
+
+            function generateRandomPrimes(count, min = 2, max = 3000) {
+                const primes = [];
+
+                while (primes.length < count) {
+                    const randomNum = Math.floor(Math.random() * (max - min + 1)) + min;  // Javított tartomány
+                    if (isPrime(randomNum) && !primes.includes(randomNum)) {
+                        primes.push(randomNum);
+                    }
+                }
+                return primes;
+            }
+
+            // Példa: Generáljon 5 prímszámot 2 és 3000 között
+            console.log("Prímszámok generálása 2 és 3000 között",generateRandomPrimes(5));
+
+
+            //Random páros  számokat generál:
+
+
+            function isParosSzam(n){
+                return n % 2 === 0;
+            }
+
+            function ParoszamGen(count, min = 2, max =1000){
+                const paros=[];
+                while(paros.length < count){
+                    const randomParos = Math.floor(Math.random()*(max-min /2 + 1))* 2 + min;
+                    if( !paros.includes(randomParos)){
+                        paros.push(randomParos);
+                    }
+
+                }
+                return paros;
+
+            }
+            console.log("Random páros számok",ParoszamGen(5))
+
+
+
+
+            //Random számgenerátor 2 és 5000 között generál 10 számot(count)
+
+
+            function szamgenerator(count,min =2, max =5000){
+                let ujszamok =[];
+                while(ujszamok.length < count){
+                    let randomszam = Math.floor(Math.random()*(max-min +1))+ min;
+                    ujszamok.push(randomszam)
+                }
+                return ujszamok;
+               
+            }
+            console.log("Random számok 2 és 5000 között",szamgenerator(10));
+
+
+            /*//Palindrom ellenőrzés egy fügvényen belül Peldaszöveg() egy szövegről amit kiiratunk a konzolra return-el.
+
+
+            function Peldaszoveg(){
+                return "A Santa Lived as a Devil at NASA";
+               
+                
+            }
+            console.log(Peldaszoveg());
+
+            function Palindrome(Peldaszoveg){
+                const szoveg =Peldaszoveg().replace(/\s/g, '').toLowerCase();
+                const forditottsz= szoveg.split('').reverse().join('');
+                return szoveg ===forditottsz;
+
+            }
+            console.log(Palindrome(Peldaszoveg));*/
+
+
+            //A Palindrome függvény most egy szöveget vár paraméterként, nem pedig egy függvényt.
+            //A Peldaszoveg függvényt most külön hívjuk meg, és átadjuk az eredményét a Palindrome függvénynek.
+            //A függvény általánosabb lett, most már bármilyen bemenetre működik.
+
+            function Peldaszoveg() {
+                return "Indul a görög aludni";
+            }
+
+            console.log(Peldaszoveg());
+
+            function Palindrome(szoveg) {
+                const tisztitottSzoveg = szoveg.replace(/\s/g, '').toLowerCase();
+                const forditottSzoveg = tisztitottSzoveg.split('').reverse().join('');
+                return tisztitottSzoveg === forditottSzoveg;
+            }
+
+            console.log(Palindrome(Peldaszoveg())); // true
+            console.log(Palindrome("Hello")); // false
+            console.log(Palindrome("A Santa Lived As a Devil At NASA")); // true (ha kisbetűsítjük és kiszedjük a szóközöket)
+
+
+
+
+        
+
+
+
+        </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        
+
+    </body>
+    
+</html>

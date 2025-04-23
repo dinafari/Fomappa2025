@@ -1,0 +1,192 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"  content="width=device-width, initial-scale=1.0">
+        <title>Vegyes feladat:</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    </head>
+    <body>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+        <div class="container my-4" style="background-color: aqua;">
+            <h1 style="text-align: center;font-weight:bold ; text-decoration:underline;">Vegyes feladat:</h1>
+
+            <form class="form-group">
+                <div class="row">
+                    <div class="col-12 col-md-6 my-4">
+                        <label class="form-label" for="nev">Nev</label>
+                         <input class="form-control"type="text" id="nev" name="nev">
+
+                        <label class="form-label"  for="cim">Cím</label>
+                        <input class="form-control" type="text" name="cim" id="cim">
+
+                    </div>
+
+                </div>
+                
+            </form>
+
+            <div class="container my-4">
+                <table  class="table table-striped">
+                    <thead class="table-dark">
+                        <th>Neve:</th>
+                        <th>Címe:</th>
+                    </thead>
+                    <tbody id="Eredmenytabla"></tbody>
+                </table>
+
+            </div>
+
+
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-auto">
+                        <button type="button" class=" btn btn-success" id="felvitel" onclick="felvitel()">Felvitel</button>
+                        <button type="button" class="btn btn-warning" id="torles" onclick=" torles()">Törles</button>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <script>
+            
+            
+
+            const Arucikkek= [
+                {neve:"kenyer",ara:1200, keszletenE:true},
+                {neve:"felvágott",ara:800,keszletenE:false},
+                {neve:"olívaolaj",ara:4000,keszletenE:true},
+                {neve:"paradicsom",ara:900,keszletenE:false},
+            ];
+            console.log("Árúcikkeink",Arucikkek);
+
+            function keszletenVan(){
+                const keszlet = Arucikkek.filter((arucikk) => arucikk.keszletenE===true);
+                return keszlet;
+            }
+            console.log("A készleten lévő árúcikkek",keszletenVan());
+
+            function ezerKettoAlatt(){
+                return Arucikkek.filter((arucikk) =>arucikk.ara < 1200);
+            }
+            console.log("Árúcikkek 1200 alatt:",ezerKettoAlatt());
+
+
+            const Szamok=[1,3,22,79,37,9,10,100,60];
+
+            function SzamokNovekvobe(){
+                return Szamok.sort((a,b) =>(a-b));//Ez módosítja a tömböt
+                //return [...Szamok].sort((a, b) => a - b);//Ez a verzió nem módosítja
+                //  az eredeti tömböt,  hanem másolatot készít, majd azt rendezi.
+                
+                
+            }
+            console.log(SzamokNovekvobe());
+
+
+            function ParosSzNovekvobe(){
+                const parsz = Szamok.filter((szam) =>szam %2 ===0);
+                return parsz.sort((a,b) =>(a-b));
+            }
+            console.log(ParosSzNovekvobe());
+
+            function ParatlanSzCsokk(){
+                const paratl = Szamok.filter((szam) => szam %2 !==0);
+                return paratl.sort((a,b) =>(b-a));
+            }
+            console.log(ParatlanSzCsokk());
+
+
+            const Szavak=["szappan","kék","görög","virsli","gyufásskatuja"];
+
+            ujtomb=[];
+
+            function hatKarakterHosszSzo(){//Új tömbbe pusholjuk a kiszűrt szavakat!
+                Szavak.forEach(szo =>{
+                    if(szo.length ===6){
+                        ujtomb.push(szo);
+                    }   
+                    
+                })
+                return ujtomb;
+            
+            }
+            console.log(hatKarakterHosszSzo());
+
+            function palindromSzo(szo){
+                const palindr = szo===szo.split("").reverse().join("");
+                return palindr;
+            
+            }
+           const palinromok= Szavak.filter(palindromSzo);
+           console.log(palinromok);
+
+           function legdrAru(){
+                const legdr= Math.max(...Arucikkek.map(arucikk => arucikk.ara));
+                return Arucikkek.filter(arucikk =>arucikk.ara ===legdr);
+
+            }
+            console.log("A legdrágább árucikk:",legdrAru());
+
+
+            function legolcsAru(){
+                const legolcs= Math.min(...Arucikkek.map(arucikk =>arucikk.ara));
+                return Arucikkek.filter(arucikk => arucikk.ara ===legolcs);
+
+            }
+            console.log("A legolcsóbb árucikk:",legolcsAru());
+
+
+            function felvitel(){
+                let nev = document.getElementById("nev").value;
+                let cim = document.getElementById("cim").value;
+               
+
+                let eredmenyek = document.getElementById("Eredmenytabla");
+
+                if (nev === "" || cim === "") {
+                    alert("Minden mezőt ki kell tölteni!");//Ha a mezők üresek, figyelmezteti a felhasználót.
+                    return;
+                }
+            
+                eredmenyek.innerHTML +=`
+                    <tr>
+                        <td>${nev}</td>
+                        <td>${cim}</td> 
+                    </tr>
+                   
+                `;
+
+
+
+                // Mezők törlése az új beírás után
+                document.getElementById("nev").value = "";
+                document.getElementById("cim").value = "";
+
+
+
+
+
+            }
+           
+
+            function torles(){
+                document.getElementById("Eredmenytabla").innerHTML="";
+               
+
+            }
+
+        </script>
+
+
+
+
+
+
+    </body>
+</html>

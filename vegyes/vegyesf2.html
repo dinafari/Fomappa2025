@@ -1,0 +1,144 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width= device-width, initial-scale=1.0">
+        <title>Vegyes 2 fel</title>
+    </head>
+    <body>
+        <h2>Vegyes feladatok:</h2>
+
+
+        <script>
+
+            const Motorok =[
+                {neve:"Jamaha", ara:56000,keszletenE:true,benzinesE:true,kobcenti:1800},
+                {neve:"Harley", ara:89000, keszletenE:false,benzinesE:false,kobcenti:3200},
+                { neve:"Jamaha",ara:11000, keszletenE:true,benzinesE:true,kobcenti:5600},
+                {neve:"Speedzone" ,ara:211000,keszletenE:false,benzinesE:false,kobcenti:4400}
+            ];
+            console.log("A motoraink:",Motorok)
+
+            //1.A készleten lévő motorok árának átlaga:
+
+            function keszletAtlag(){
+                const keszletenvan= Motorok.filter((motor)=>motor.keszletenE===true);
+
+                const osszertekkeszl= keszletenvan.reduce((acc,motor) => acc + motor.ara,0);
+
+                const atlaguk= osszertekkeszl/keszletenvan.length;
+                return atlaguk;
+                
+            }
+            console.log("A készleten lévő motorok árának átlaga:",keszletAtlag());
+
+
+            //Készleten lévő benzines motorok:
+
+            function KszletMotBenz(){
+                const keszlbenzm = Motorok.filter((motor)=>motor.keszletenE==true && motor.benzinesE==true);
+                return keszlbenzm;
+            }
+            console.log("Készleten lévő benzines motorok",KszletMotBenz());
+
+            //Készleten lévő legnagyobb köbcentis motor:
+
+            function legnkobcKeszl(){
+                const keszl = Motorok.filter((motor)=>motor.keszletenE);
+                const legn= Math.max(...keszl.map(motor =>motor.kobcenti));
+                return keszl.filter(motor=>motor.kobcenti==legn);
+            }
+            console.log("Készleten lévő legnagyobb köbcentis motor",legnkobcKeszl());
+
+            //A legdrágább készleten lévő motor:
+
+            function legdrkeszl(){
+                const keszlet=Motorok.filter((motor) =>motor.keszletenE);
+                const legdragabb =Math.max(...keszlet.map(motor =>motor.ara));
+                return legdk= keszlet.filter(motor => motor.ara==legdragabb);
+
+            }
+            console.log("A legdrágább készleten lévő motor:",legdrkeszl());
+
+            //A legolcsóbb készleten lévő motor:
+
+            function legoKEszlet(){
+                const van = Motorok.filter((motor) =>motor.keszletenE);
+                const olcs= Math.min(...van.map(motor=>motor.ara));
+                return legovankeszl= van.filter(motor=>motor.ara== olcs);
+            }
+            console.log("A legolcsóbb készleten lévő motor:",legoKEszlet());
+
+
+            //Motorok köbcentije nővekvő sorrendben:
+
+
+            function novKobcMOt(){
+                
+                const kobnovc = Motorok.sort((a,b)=>a.kobcenti-b.kobcenti);
+                return kobnovc;
+            
+                
+            }
+            console.log("Köbcenti szerint növekvő sorrendben",novKobcMOt());
+
+
+            //1.A készleten lévő motorok köbcentijének átlaga:
+
+
+            function kobCKatlg(){
+                const motkesz= Motorok.filter(motor=>motor.keszletenE);
+                const osszert= motkesz.reduce((acc,motor)=>acc+ motor.kobcenti,0);
+
+                const atlaguk=osszert/motkesz.length;
+                return atlaguk; 
+
+            }
+            console.log("Készleten lévő motorok köbcentijének az átlaga:",kobCKatlg());
+
+
+            const hus= [
+                {neve:"Kecske",ara:3780,keszletenE:false,szarmazasa:"Törökország"},
+                {neve:"Csirke",ara:2200,keszletenE:true,szarmazasa:"Magyarország"},
+                {neve:"Marha",ara:4900,keszletenE:true,szarmazasa:"USA"},
+                {neve:"Sertés",ara:2800,keszletenE:false,szarmazasa:"Magyarorszag"},
+            ];
+            console.log("Husok tömb:",hus);
+
+            //Boolean-nal A készleten van egyáltalán hús?:
+
+            function igazKEszl(){
+                const igaz= hus.some(hus=>hus.keszletenE);
+                return igaz +"Igaz";
+            }
+            console.log("A készleten van egyáltalán hús?",igazKEszl());
+
+
+            //Numberrel Készleten lévő husok db.száma:
+
+            function keszlBD(){
+                const db = hus.filter(hus=> hus.keszletenE).length;
+                return db+"db";
+            }
+            console.log("Készleten lévő husok db.száma",keszlBD());
+
+
+            //Husok tömbbel Készleten lévő összes hús kiírása a tömbből:
+
+            function osszKeszl(){
+                const osszes = hus.filter(hus=>hus.keszletenE);
+                return osszes;
+            }
+            console.log("Készleten lévő összes hús kiírása",osszKeszl());
+
+
+
+
+
+
+        </script>
+
+
+
+        
+    </body>
+</html>

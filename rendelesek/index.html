@@ -1,0 +1,84 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width = device-width = initial-scale=1.0">
+        <title>rendelesek JavaScript:</title>
+
+
+    </head>
+    <body>
+        <h1>Rendelesek JavaScript</h1>
+        <div>absadsdsadhA</div><!-- 4 A a betű van benne   -->
+
+        <div class="eredmeny"></div>
+
+        <script>
+            const rendelesek=[
+                {temek:"Pipacs",megrendelo:"Éva",keszletnE:true, db:3,ara:1500},
+                {temek:"Rózsa",megrendelo:"Pisti",keszletnE:false, db:9,ara:2500},
+                {temek:"Tulipán",megrendelo:"Géza",keszletnE:true, db:7,ara:1800},
+                {temek:"Nőszirom",megrendelo:"Kati",keszletnE:false, db:5,ara:1700},
+
+
+            ];
+            console.log("Rendelések:",rendelesek);
+
+            //A rendeléseken belül a készleten lévők termekek átlagára:
+
+            function keszletenAtlagar(){
+                const keszl= rendelesek.filter(rendeles=>rendeles.keszletnE);
+                const oszzAr= keszl.reduce((acc,rendeles)=>acc + rendeles.ara,0);
+                const atlaguk =oszzAr/keszl.length;
+                return atlaguk;
+
+            }
+            console.log("A rendeléseken belül a készleten lévők termekek átlagára:",keszletenAtlagar());
+
+            
+            //Páros és ötvennél nagyobb számok:
+
+
+            const szamok =[10,20,3,5,100,50,60,53]
+
+            function kivparOtv(){
+
+                const potv = szamok.filter(szam=>szam >50 && szam %2 ==0);
+                return potv;
+            }
+            console.log("Páros és ötvennél nagyobb számok",kivparOtv());
+
+            //Az A illetve a betuk szama az elsó div node-ból:
+
+            function abetukSzamadiv(){
+                const szoveg = document.getElementsByTagName('div')[0].textContent || '';
+        
+                const betuDB= (szoveg.match(/a/gi) || [] ).length;
+                return betuDB;  
+            }
+            console.log("Az a betuk szama:",abetukSzamadiv());
+
+            function osszaeadfelir(op1, op2){
+
+                const divclass = document.getElementsByClassName('eredmeny')[0];
+
+                const p = document.createElement("p");
+                p.textContent = op1 + "+" + op2 + "=" +(Number(op1)+ Number(op2));
+
+                divclass.appendChild(p);
+                console.log(p.textContent);
+
+                
+            }
+            const vege= osszaeadfelir(25,2);
+
+
+
+
+
+
+
+
+        </script>
+        
+    </body>
+</html>

@@ -1,0 +1,78 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale =1.0">
+        <title>Ciklusok:</title>
+    </head>
+    <body>
+        <script>
+            let szam =10;
+            let hossz6 =[];
+            let hossz5 =[];
+
+            let szavak =[{neve:"Könyv",ara:10000},
+                {neve: "Pudlik",ara:25000}
+            ];
+
+            //Foreach ciklusok 1.:
+            szavak.forEach(szo =>{
+                if(szo.neve.length === 6){
+                    hossz6.push(szo.neve);
+                }
+            });
+
+            console.log("Hat karakterhosszú szó:",hossz6);
+
+            // filterrel egyszerűbb:
+
+            hossz5 = szavak.filter(szo => szo.neve.length ===5);
+            console.log ("Ötkarakterhosszú szavak:",hossz5);
+
+            //Foreach ciklusok2.:
+
+           
+            szavak.forEach(szo => {
+                console.log(`Név: ${szo.neve}, Ár: ${szo.ara}`);
+                
+            });
+            
+
+            // if else 
+
+            function igazHamis(){
+                if(szam > 5){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+            console.log(igazHamis());
+
+            // if else a try catch-el 
+
+            function tizvagyhamis(){
+                if(szam === 10){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+
+            console.log(tizvagyhamis());
+
+            //Ternary operátorral:
+
+
+            function szamkisebbkettonel(){
+                return szam < 2 ?  true: false;
+            }
+            console.log(szamkisebbkettonel());
+
+
+
+
+
+        </script>
+        
+    </body>
+</html>
